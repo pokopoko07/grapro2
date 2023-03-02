@@ -25,7 +25,7 @@
                             <hr class="w-full"><br>
 
                             <div class="container_list">
-                                <div class="item-1">
+                                <div class="item-1 h-48">
                                     @if($post->image_main)
                                         <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid">{{-- style="height:300px;"> --}}
                                     @else
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="item-2">
                                     <p class="mt-4 text-gray-600 py-4">{{Str::limit($post->body,100,"...")}}　　
-                                        <a href="{{route('post.show', $post)}}" class="text-red-500 hover:underline cursor-pointer">learn more</a>
+                                        <a href="{{route('post.show', $post)}}" class="text-red-500 hover:underline cursor-pointer">read more</a>
                                     </p>
                                 </div>
                                 <div class="item-3 border-solid border-gray-400 rounded-md">

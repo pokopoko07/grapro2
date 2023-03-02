@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{route('top')}}"> <!--dashboard') }}"> -->
-                    <img src="{{asset('logo/arakashi_logo.png')}}" style="max-height:80px;">
+                    <img src="{{asset('logo/arakashi_logo2.png')}}" style="max-height:80px;">
                     </a>
                 </div>
 
