@@ -3,7 +3,7 @@
         <div class="h-screen pb-14 bg-right bg-cover">
             <div class="container pt-2 md:pt-18 px-6 mx-auto flex flex-col md:flex-row items-center bg-white-100">
                 
-                {{-- 右側 --}}
+                {{-- 左側 --}}
                 @php
                      // public/imagesディレクトリ内のファイル一覧を取得する
                     $files = \File::files(public_path('storage/images'));
@@ -36,9 +36,9 @@
                         <img id="slideshow6" class="rounded-lg h-full w-full object-cover lg:mr-0" src="{{asset('logo/tetunagi.jpg')}}">
                     </div>
                 </div>
-                <!--左側-->
+                <!--右側-->
                 <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden ">
-                    <h1 class="my-4 mx-8 text-3xl md:text-8xl text-black-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
+                    <h1 class="my-4 mx-8 text-4xl md:text-8xl text-black-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
                         <table>
                             <tr><td>アラ<br>カシ</td>
                                 <td><img class="rounded-lg h-full w-full object-contain lg:mr-0" src="{{asset('logo/kashiwanoha.jpg')}}"></td>
@@ -71,7 +71,7 @@
             </div>
             <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
                 <div class="w-full text-sm text-center md:text-left fade-in border-2 p-4 text-red-800 leading-8 mb-8">
-                    <P> ここは色々いれてください。</p>
+                    {{-- <P> ここは色々いれてください。</p> --}}
                 </div>
                 <!--フッタ-->
                 <div class="w-full pt-10 pb-6 text-sm md:text-left fade-in">
