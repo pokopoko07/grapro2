@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,8 @@ Route::middleware(['can:admin'])->group(function(){
 });
 
 Route::resource('post', PostController::class);
+
+Route::get('contact/create', [ContactController::class, 'create'])->name('contact.create');
+Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 

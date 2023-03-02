@@ -20,6 +20,9 @@
                         新規投稿
                     </x-nav-link>
                     @endcan
+                    <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
+                        お問い合わせ
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -80,6 +83,9 @@
                 新規投稿
             </x-responsive-nav-link>
             @endcan
+            <x-responsive-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
+                お問い合わせ
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
