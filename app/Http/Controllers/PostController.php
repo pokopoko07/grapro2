@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -537,6 +538,8 @@ class PostController extends Controller
     // 投稿記事を削除します
     public function destroy(Post $post)
     {
+        Gate::authorize('admin');
+        
         $post->comments()->delete();
         $post->delete();
         return redirect()->route('post.index')->with('message', '記事を削除しました');

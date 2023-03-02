@@ -15,9 +15,11 @@
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                         HOME
                     </x-nav-link>
+                    @can('admin')
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                         新規投稿
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -37,9 +39,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        {{-- <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -73,9 +75,11 @@
             <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                 HOME
             </x-responsive-nav-link>
+            @can('admin')
             <x-responsive-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                 新規投稿
             </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
@@ -86,9 +90,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                {{-- <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

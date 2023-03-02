@@ -9,15 +9,18 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="font-semibold leading-none mt-4">こんにちは、あるいは、こんばんは、{{$user->name}}さん！</p>
+        <p class="font-semibold leading-none mt-4">
+            こんにちは、あるいは、こんばんは、{{$user->name}}さん！<br>
+            施設名をクリックすると、詳細画面が見られます。<br>
+        </p>
         <p class="font-semibold leading-none mt-4">検索結果：{{$count}}件です</p>
         @foreach ($posts as $post)
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
                     <div class="bg-white w-full  rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
                         <div class="mt-4">
-                            <h1 class="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">
-                                <a href="{{route('post.show', $post)}}">{{ $post->title }}</a>
+                            <h1 class="text-2xl text-gray-700 font-semibold hover:underline cursor-pointer">
+                                <a href="{{route('post.show', $post)}}">施設名：{{ $post->title }}</a>
                             </h1>
                             <hr class="w-full"><br>
 

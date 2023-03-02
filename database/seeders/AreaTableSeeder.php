@@ -15,6 +15,7 @@ class AreaTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('areas')->truncate();
         $param=[
             'area' => '柏市',
         ];
