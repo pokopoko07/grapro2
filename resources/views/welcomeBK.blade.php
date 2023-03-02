@@ -2,53 +2,10 @@
     <body class="antialiased">
         <div class="h-screen pb-14 bg-right bg-cover">
             <div class="container pt-2 md:pt-18 px-6 mx-auto flex flex-col md:flex-row items-center bg-white-100">
-                
-                {{-- 右側 --}}
-                @php
-                     // public/imagesディレクトリ内のファイル一覧を取得する
-                    $files = \File::files(public_path('storage/images'));
-
-                    // 取得したファイル一覧から、JPEGファイルだけをフィルタリングする
-                    $jpeg_files = [];
-                    foreach ($files as $file) {
-                        if (in_array($file->getExtension(), ['jpg', 'jpeg', 'JPG','JPEG'], true)) {
-                            $jpeg_files[] = $file->getFilename();
-                        }
-                    }
-                @endphp
-                <div class="container_welcome w-full xl:w-3/5 py-6 overflow-y-hidden">
-                    <div class="item_w1 h-32 w-full"> 
-                        <img class="rounded-lg h-full w-full object-contain lg:mr-0" src="{{asset('logo/welcome.jpg')}}">
-                    </div>
-                    <div class="item_w2 w-full">
-                        <img id="slideshow" class="rounded-lg h-full w-full object-cover lg:mr-0" src="{{asset('logo/takaitakai.jpg')}}">
-                    </div>
-                    <div class="item_w3 h-32 w-full">
-                        <img id="slideshow3" class="rounded-lg h-full w-full object-cover lg:mr-0" src="{{asset('logo/girl.jpg')}}">
-                    </div>
-                    <div class="item_w4 h-32 w-full">
-                        <img id="slideshow4" class="rounded-lg h-full w-full object-cover lg:mr-0" src="{{asset('logo/girl2.jpg')}}">
-                    </div>
-                    <div class="item_w5 h-32 w-full">
-                        <img class="rounded-lg h-full w-full object-contain lg:mr-0" src="{{asset('logo/tree.jpg')}}">
-                    </div>
-                    <div class="item_w6 h-32 w-full">
-                        <img id="slideshow6" class="rounded-lg h-full w-full object-cover lg:mr-0" src="{{asset('logo/tetunagi.jpg')}}">
-                    </div>
-                </div>
                 <!--左側-->
                 <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden ">
-                    <h1 class="my-4 mx-8 text-3xl md:text-8xl text-black-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-                        <table>
-                            <tr><td>アラ<br>カシ</td>
-                                <td><img class="rounded-lg h-full w-full object-contain lg:mr-0" src="{{asset('logo/kashiwanoha.jpg')}}"></td>
-                            </tr>
-                        </table>
-                        <h3 class="my-2 mx-8 text-2xl md:text-4xl text-green-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-                            around Kashiwa.
-                        </h3>
-                    </h1>
-                    <p class="mx-8 leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">
+                    <h1 class="my-4 text-3xl md:text-5xl text-black-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">アラカシ</h1>
+                    <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">
                     　「アラカシ」　柏周辺=around Kashiwa　略して「アラカシ」です。柏周辺の、子供と一緒にお出かけできるお出かけスポットを紹介しています。
                     <br>
                     　ぜひ、お気軽にご利用ください。
@@ -66,6 +23,39 @@
                                 ご登録はこちら
                             </x-primary-button>
                         </a>
+                    </div>
+                </div>
+                {{-- 右側 --}}
+                @php
+                     // public/imagesディレクトリ内のファイル一覧を取得する
+                    $files = \File::files(public_path('storage/images'));
+
+                    // 取得したファイル一覧から、JPEGファイルだけをフィルタリングする
+                    $jpeg_files = [];
+                    foreach ($files as $file) {
+                        if (in_array($file->getExtension(), ['jpg', 'jpeg', 'JPG','JPEG'], true)) {
+                            $jpeg_files[] = $file->getFilename();
+                        }
+                    }
+                @endphp
+                <div class="container_welcome w-full xl:w-3/5 py-6 overflow-y-hidden">
+                    <div class="item_w1 h-32 w-full"> 
+                        <img class="h-full w-full object-contain lg:mr-0" src="{{asset('logo/welcome.jpg')}}">
+                    </div>
+                    <div class="item_w2 w-full">
+                        <img id="slideshow" class="h-full w-full object-cover lg:mr-0" src="{{asset('logo/takaitakai.jpg')}}">
+                    </div>
+                    <div class="item_w3 h-32 w-full">
+                        <img id="slideshow3" class="h-full w-full object-cover lg:mr-0" src="{{asset('logo/girl.jpg')}}">
+                    </div>
+                    <div class="item_w4 h-32 w-full">
+                        <img id="slideshow4" class="h-full w-full object-cover lg:mr-0" src="{{asset('logo/girl2.jpg')}}">
+                    </div>
+                    <div class="item_w5 h-32 w-full">
+                        <img class="h-full w-full object-contain lg:mr-0" src="{{asset('logo/tree.jpg')}}">
+                    </div>
+                    <div class="item_w6 h-32 w-full">
+                        <img id="slideshow6" class="h-full w-full object-cover lg:mr-0" src="{{asset('logo/tetunagi.jpg')}}">
                     </div>
                 </div>
             </div>
