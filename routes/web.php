@@ -36,6 +36,7 @@ require __DIR__.'/auth.php';
 
 Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
 Route::post('/result',[PostController::class,'result'])->name('post.result');
+//Route::get('/result',[PostController::class,'result'])->name('post.result');
 Route::post('/result_back',[PostController::class,'result_back'])->name('post.result_back');
 
 Route::middleware(['can:admin'])->group(function(){
@@ -43,6 +44,10 @@ Route::middleware(['can:admin'])->group(function(){
 });
 
 Route::resource('post', PostController::class);
+
+// Route::get('/result/back', [PostController::class, 'result'])->name('result_get');
+// Route::post('/result/back', [PostController::class, 'result'])->name('result_post');
+Route::match(['get', 'post'], '/result/back', [PostController::class, 'result']);
 
 Route::get('contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');

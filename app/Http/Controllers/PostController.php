@@ -144,12 +144,12 @@ class PostController extends Controller
                     }
                 }
             }
-        })->orderBy('created_at', 'desc')->get();
+        })->orderBy('created_at', 'desc')->paginate(5)->withPath('/result/back');
 
         $user=auth()->user();
 
-        $count=count($posts);
-        return view('post.index', compact('posts', 'user','count'));
+        //$count=count($posts);
+        return view('post.index', compact('posts', 'user'));//,'count'));
     }
 
     public function result(Request $request)
@@ -190,6 +190,7 @@ class PostController extends Controller
 
         // 5.年代で検索
         $age        = $request->age_name;
+
         if (empty($age)){
             $request->session()->put('ages', -1);
         }else{
@@ -297,12 +298,13 @@ class PostController extends Controller
                     }
                 }
             }
-        })->orderBy('created_at', 'desc')->get();
+        })->orderBy('created_at', 'desc')->paginate(5)->withPath('/result/back');
 
         $user=auth()->user();
 
-        $count=count($posts);
-        return view('post.index', compact('posts', 'user','count'));
+        //$count=count($posts);
+
+        return view('post.index', compact('posts', 'user'));//,'count'));
     }
 
     /* create 関数

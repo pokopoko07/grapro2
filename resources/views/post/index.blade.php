@@ -13,7 +13,8 @@
             こんにちは、あるいは、こんばんは、{{$user->name}}さん！<br>
             施設名をクリックすると、詳細画面が見られます。<br>
         </p>
-        <p class="font-semibold leading-none mt-4">検索結果：{{$count}}件です</p>
+        <p class="font-semibold leading-none mt-4">検索結果：{{ $posts->total() }}件です</p>
+        {{-- <p class="font-semibold leading-none mt-4">検索結果：{{$count}}件です</p> --}}
         @foreach ($posts as $post)
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
@@ -73,5 +74,8 @@
                 </div>
             </div>
         @endforeach
+        {{-- {{$posts->links()}} --}}
+        {{-- {{$posts->appends(request()->query())->links()}} --}}
+        {{$posts->appends(request()->input())->links()}}
     </div>
 </x-app-layout>
