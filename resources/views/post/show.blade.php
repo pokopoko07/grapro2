@@ -21,7 +21,9 @@
                         </h1>
 
                         <div class="flex justify-end mt-4">
+                            @can('admin')
                             <a href="{{route('post.edit', $post)}}"><x-primary-button class="bg-teal-700 float-right">編集</x-primary-button></a>
+                            @endcan
                             @can('admin')
                             <form method="post" action="{{route('post.destroy', $post)}}">
                                 @csrf

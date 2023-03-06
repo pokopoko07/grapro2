@@ -43,6 +43,8 @@ class PostController extends Controller
             $age        = explode(",",$request->session()->get('ages'));
         }
 
+        $currentPage=$request->session()->get('currentPage');
+
         $posts = Post::where(function($query) use ($word) {
             // 1.2単語の数だけ、where文を作成します
             for($i=0;$i<count($word);$i++){
@@ -144,12 +146,26 @@ class PostController extends Controller
                     }
                 }
             }
-        })->orderBy('created_at', 'desc')->paginate(5)->withPath('/result/back');
+        })->orderBy('created_at', 'desc');
+        
+        // result関数から、ページ数を保持したまま（セッションの中に、ページが格納されている）
+        // だと、以前のページを表示する。ペジネーションの次へボタンなどを押された時は、ペジネーションの
+        // 指定のページを表示するように分岐させた
+        if($currentPage==-1){
+            $posts = $posts->paginate(5);
+        }else{
+            $posts = $posts->paginate(5, ['*'], 'page', $currentPage);
+            $request->session()->put('currentPage',-1);
+        }
+        
+        
+        $posts = $posts->withPath('/result_back/back');
 
         $user=auth()->user();
 
-        //$count=count($posts);
-        return view('post.index', compact('posts', 'user'));//,'count'));
+        $moveFrom=2;
+
+        return view('post.index', compact('posts', 'user','moveFrom'));
     }
 
     public function result(Request $request)
@@ -302,9 +318,14 @@ class PostController extends Controller
 
         $user=auth()->user();
 
-        //$count=count($posts);
+        $moveFrom=1;
 
-        return view('post.index', compact('posts', 'user'));//,'count'));
+        //$count=count($posts);
+        // 現在のページを取得します
+        $currentPage = $posts->currentPage();
+        $request->session()->put('currentPage',$currentPage);
+
+        return view('post.index', compact('posts', 'user','moveFrom'));//,'count'));
     }
 
     /* create 関数
@@ -429,6 +450,8 @@ class PostController extends Controller
     // 詳細画面の編集を行う画面を表示する
     public function edit(Post $post)
     {
+        Gate::authorize('admin');
+        
         $items=Area::all();
         $param=[
             'items_a' => $items,

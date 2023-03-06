@@ -48,6 +48,7 @@ Route::resource('post', PostController::class);
 // Route::get('/result/back', [PostController::class, 'result'])->name('result_get');
 // Route::post('/result/back', [PostController::class, 'result'])->name('result_post');
 Route::match(['get', 'post'], '/result/back', [PostController::class, 'result']);
+Route::match(['get', 'post'], '/result_back/back', [PostController::class, 'result_back']);
 
 Route::get('contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');

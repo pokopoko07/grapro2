@@ -76,6 +76,15 @@
         @endforeach
         {{-- {{$posts->links()}} --}}
         {{-- {{$posts->appends(request()->query())->links()}} --}}
-        {{$posts->appends(request()->input())->links()}}
+
+        @if($moveFrom==1)
+            {{$posts->appends(request()->input())->links()}}
+        @elseif($moveFrom==2)
+            {{-- {{$posts->appends(request()->input())->links()}} --}}
+            {{$posts->links()}}
+            {{-- {{ $posts->appends(request()->query())->links('pagination::bootstrap-4') }} --}}
+            {{-- {{$posts->appends(request()->all())->links()}} --}}
+            {{-- {{$posts->appends(request()->except('_token'))->withQueryString()->links()}} --}}
+        @endif
     </div>
 </x-app-layout>
