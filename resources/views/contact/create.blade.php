@@ -1,7 +1,7 @@
 {{-- <x-guest-layout> --}}
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-xl text-gray-700 font-semibold hover:underline cursor-pointer">
+        <h1 class="text-xl text-white font-semibold hover:underline cursor-pointer">
             お問い合わせ
         </h1>
         <x-validation-errors class="mb-4" :errors="$errors" />

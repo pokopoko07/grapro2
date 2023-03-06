@@ -9,6 +9,11 @@ use App\Mail\ContactForm;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        return view('contact.profile');
+    }
+
     public function create()
     {
         return view('contact.create');

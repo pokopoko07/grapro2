@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex overflow-hidden">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{route('top')}}"> <!--dashboard') }}"> -->
@@ -26,9 +26,12 @@
                     </div>
                     @endcan
                     <div class="text-right">
-                    <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
-                        お問い合わせ
+                    <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')">
+                        Profile
                     </x-nav-link>
+                    {{-- <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
+                        お問い合わせ
+                    </x-nav-link> --}}
                     </div>
                 </div>
             </div>
@@ -90,9 +93,12 @@
                 新規投稿
             </x-responsive-nav-link>
             @endcan
-            <x-responsive-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
-                お問い合わせ
+            <x-responsive-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')">
+                Profile
             </x-responsive-nav-link>
+            {{-- <x-responsive-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
+                お問い合わせ
+            </x-responsive-nav-link> --}}
         </div>
 
         <!-- Responsive Settings Options -->
