@@ -52,9 +52,11 @@
                         <div class="item2">
                             <p class="mt-4 text-gray-600 py-4">{!! nl2br(e($post->body)) !!}<p> {{--{{$post->body}}</p> --}}
                              @if($post->hp_adress)
-                                <div class="text-sm font-semibold flex flex-row-reverse">
-                                    <p> HP:<a href="{{ $post->hp_adress }}" target="_blank">{{ $post->hp_adress }}</a></p>
+                             <div class="flex justify-end">
+                                <div class="bg-blue-500 text-white rounded-md w-1/5 text-center drop-shadow-lg hover:bg-sky-700"> {{--text-sm font-semibold flex flex-row-reverse --}}
+                                    <a href="{{ $post->hp_adress }}" target="_blank">To HP</a>
                                 </div>
+                            </div>
                             @endif
                         </div>
                             

@@ -11,18 +11,25 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-16 sm:-my-px sm:ml-10 sm:flex items-center">
+                    <div>
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                         HOME
                     </x-nav-link>
+                    </div>
+
                     @can('admin')
+                    <div>
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                         新規投稿
                     </x-nav-link>
+                    </div>
                     @endcan
+                    <div class="text-right">
                     <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
                         お問い合わせ
                     </x-nav-link>
+                    </div>
                 </div>
             </div>
 

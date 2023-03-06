@@ -25,7 +25,7 @@
                             </h1>
                             <hr class="w-full"><br>
 
-                            <div class="container_list">
+                            <div class="container_list mb-4">
                                 <div class="item-1 h-48">
                                     @if($post->image_main)
                                         <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid">{{-- style="height:300px;"> --}}

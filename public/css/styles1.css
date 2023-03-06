@@ -4,7 +4,11 @@
     grid-template-rows:80% 20%;
     grid-template-columns: 38% 55%;
     grid-gap:10px 10px;
-    overflow: hidden;
+
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows:80% 20%;
+    gap: 1rem; */
 
 }
 
