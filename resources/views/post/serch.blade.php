@@ -47,7 +47,7 @@
                             場所：
                         </div>
                         <div class="w-3/4">
-                            <div class="w-full flex flex-row  mt-8">
+                            <div class="w-full flex flex-wrap  md:flex-row mt-8">
                                 @foreach($items_a as $item_a)
                                     <label class="ml-4"><input type="checkbox" name="area_name[]" value="{{$item_a->id}}" checked>{{$item_a->area}}</label>
                                 @endforeach

@@ -48,13 +48,10 @@ class PostController extends Controller
         $posts = Post::where(function($query) use ($word) {
             // 1.2単語の数だけ、where文を作成します
             for($i=0;$i<count($word);$i++){
-                if($i==0){
+                $query->where(function($query) use ($word, $i) {
                     $query->where('title', 'LIKE', "%$word[$i]%")
-                        ->orWhere('body', 'LIKE', "%$word[$i]%");
-                }else{
-                    $query->where('title', 'LIKE', "%$word[$i]%")
-                    ->orWhere('body', 'LIKE', "%$word[$i]%");
-                }
+                          ->orWhere('body', 'LIKE', "%$word[$i]%");
+                });
             }
         })->where(function($query) use ($facility) {
             // 2.2選ばれた施設区分の数だけ繰り返して、施設区分にtrueが入っている
@@ -216,13 +213,10 @@ class PostController extends Controller
         $posts = Post::where(function($query) use ($word) {
             // 1.2単語の数だけ、where文を作成します
             for($i=0;$i<count($word);$i++){
-                if($i==0){
+                $query->where(function($query) use ($word, $i) {
                     $query->where('title', 'LIKE', "%$word[$i]%")
-                        ->orWhere('body', 'LIKE', "%$word[$i]%");
-                }else{
-                    $query->where('title', 'LIKE', "%$word[$i]%")
-                    ->orWhere('body', 'LIKE', "%$word[$i]%");
-                }
+                          ->orWhere('body', 'LIKE', "%$word[$i]%");
+                });
             }
         })->where(function($query) use ($facility) {
             // 2.2選ばれた施設区分の数だけ繰り返して、施設区分にtrueが入っている

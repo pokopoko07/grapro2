@@ -134,8 +134,8 @@
                     <div class="w-full flex flex-col">
                         <label for="dog_id" class="font-semibold leading-none mt-4">犬OK？</label>
                         <ul id="dog_id">
-                            <li><label>ＮＧ:<input type="radio" name="dogs" value=0 @if($post->dogs == 0) checked @endif></label></li>
-                            <li><label>ＯＫ:<input type="radio" name="dogs" value=1 @if($post->dogs == 1) checked @endif></label></li>
+                            <li><label>ＮＧ:<input type="radio" name="dogs" value=1 @if($post->dogs == 1) checked @endif></label></li>
+                            <li><label>ＯＫ:<input type="radio" name="dogs" value=2 @if($post->dogs == 2) checked @endif></label></li>
                             <li><label>不明:<input type="radio" name="dogs" value=99 @if($post->dogs == 99) checked @endif></label></li>
                         </ul>
                     </div>

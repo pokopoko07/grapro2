@@ -8,14 +8,14 @@
     <div class="container_profile_1 m-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         {{-- 左側 --}}
         <div class="prof_itemL bg-teal-50">
-            <img src="{{ asset('logo/profile.jpg')}}" class="m-8 mx-auto w-1/2 rounded-full">{{--"mx-auto fit_grid rounded-full"--}} 
+            <img src="{{ asset('logo/profile.jpg')}}" class="m-8 mx-auto w-1/2 rounded-full">
             <ul class="text-center">
                 <li>名前：Mihoko.T</li>
                 <li></li>
                 <li class="mt-4">
                     <div class="flex justify-center">
                         <div class="bg-green-500 text-white rounded-md w-1/2 text-center drop-shadow-lg hover:bg-sky-700">
-                            <a href="https://github.com/pokopoko07">GitHub:公開コード</a>
+                            <a href="https://github.com/pokopoko07/grapro2" target="_blank" rel="noopener noreferrer">GitHub:公開コード</a>
                         </div>
                     </div>
                 </li>
@@ -37,6 +37,7 @@
                 <div class="bg-teal-50"></div>
                 <div class="col-span-2 bg-white">
                     <div class="m-4">
+                        <span class="font-semibold">プログラマー、SEを目指した理由--</span>
                         　小学3年生の時、お年玉を貯めて買ったMSXというキーボード型のパソコンで、初めてプログラミング
                         に触れました。学研の科学という雑誌に書いてあったプログラムを、意味もわからず、ただ打ちこみま
                         した。「壁打ちテニスのゲーム」プログラムだったと思います。一文字一文字間違えないように、
@@ -47,18 +48,29 @@
                 </div>
                 <div class="col-span-2 bg-white">
                     <div class="m-4">
-                        　大学で情報工学を学んだ後、医療機器メーカーでシステムエンジニアとして5年半働きました。そのころは、
-                        C言語、C++でプログラムを組んでいました。しかし、月平均130時間を超える残業時間に、とても、
-                        育児をしながら働くのは無理と考え、結婚後、一度プログラマーをあきらめてしまいました。<br>
-                        　その後、医療事務員としてクリニックや総合病院にて、算定業務にあたっていました。人生40代になり、
-                        本当にやりたいことはなんだろうと考えたとき、MSXで打ったプログラムが正しく動いた感動を思い出し、
+                        <span class="font-semibold">経歴--</span>
+                        　大学で情報工学を学んだ後、医療機器メーカーでシステムエンジニアとして5年半、ユーザーインターフェース
+                        の開発を行いました。使用した言語は、C言語、C++でした。しかし、月平均130時間を超える残業時間に、とても、
+                        育児をしながら働くのは難しいと考え、結婚後、しばらくして、プログラマーをあきらめてしまいました。<br>
+                        　その後、医療事務員としてクリニックや総合病院にて、算定業務にあたっていました。40代になり、
+                        本当にやりたいことはなんだろうと人生を考えたとき、MSXで打ったプログラムが正しく動いた感動を思い出し、
                         もう一度、プログラマーの勉強をしようと、一念発起して職業訓練校の「プログラミング習得科」で、WEB
                         プログラムを勉強し直しました。
                     </div>
                 </div>
                 <div class="bg-teal-50"></div>
                 <div class="bg-teal-50"></div>
-                <div class="col-span-2 bg-white">6</div>
+                <div class="col-span-2 bg-white">
+                    <div class="m-4">
+                        <span class="font-semibold">スキル--</span>
+                        　職業訓練校では、「HTML」、「css」、「PHP」、「JavaScript」、「mySQL」、「Laravel」を学びました。20年
+                        以上前の経験が生かせるか不安でしたが、授業が進むうちに、プログラムを組む感覚が戻ってきました。自分の中に、
+                        ちゃんとプログラミング技術が残っていることを確信できました。<br>
+                        　半年だけの学生生活でしたが、本当に勉強に打ち込みました。濃密な半年間を過ごせたと思います。
+                        職業訓練で習ったことは、WEB開発に関わることばかりでしたが、プログラミングに関われるのであれば、新しい言語
+                        や技術を勉強する意欲があります。臆することなく、新しいことに挑戦したいです。
+                    </div>
+                </div>
             </div>
         </div>
     </div>
