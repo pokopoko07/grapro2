@@ -35,94 +35,109 @@
                         <hr class="w-full">
                     </div>
 
-                    <div class="container_syousai">
-                        {{-- main画像表示 --}}
-                        <div class="item1">
-                            @if($post->image_main)
-                                <a href="{{ asset('storage/images/'.$post->image_main)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid">
-                                </a>
-                            @else
-                                <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
-                                {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
-                            @endif
-                        </div>
-
-                        {{--本文表示--}}
-                        <div class="item2">
-                            <p class="mt-4 text-gray-600 py-4">{!! nl2br(e($post->body)) !!}<p> {{--{{$post->body}}</p> --}}
-                             @if($post->hp_adress)
-                             <div class="flex justify-end">
-                                <div class="bg-blue-500 text-white rounded-md w-1/5 text-center drop-shadow-lg hover:bg-sky-700"> {{--text-sm font-semibold flex flex-row-reverse --}}
-                                    <a href="{{ $post->hp_adress }}" target="_blank" rel="noopener noreferrer">To HP</a>
+                    <div class="container_show m-2 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {{--左側--}}
+                        <div class="show_itemL">
+                            <div class="container_image m-2 grid grid-cols-2 grid-rows-4 gap-4">
+                                <div class="col-span-2 row-span-2">
+                                    {{-- main画像表示 --}}
+                                    <div class="item1">
+                                        @if($post->image_main)
+                                            <a href="{{ asset('storage/images/'.$post->image_main)}}"  data-lightbox="group">
+                                                <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid rounded-lg">
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('logo/rainbow.jpg')}}" class="mx-auto fit_grid">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="item3">
+                                        @if($post->image_sub1)
+                                            <a href="{{ asset('storage/images/'.$post->image_sub1)}}"  data-lightbox="group">
+                                                <img src="{{ asset('storage/images/'.$post->image_sub1)}}" class="mx-auto fit_grid rounded-lg">
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="item4">
+                                        @if($post->image_sub2)
+                                            <a href="{{ asset('storage/images/'.$post->image_sub2)}}"  data-lightbox="group">
+                                                <img src="{{ asset('storage/images/'.$post->image_sub2)}}" class="mx-auto fit_grid rounded-lg">
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('logo/sanpo.jpg')}}" class="mx-auto fit_grid">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="item5">
+                                        @if($post->image_sub3)
+                                            <a href="{{ asset('storage/images/'.$post->image_sub3)}}"  data-lightbox="group">
+                                                <img src="{{ asset('storage/images/'.$post->image_sub3)}}" class="mx-auto fit_grid rounded-lg">
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('logo/tree.jpg')}}" class="mx-auto fit_grid">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="item6">
+                                        @if($post->image_sub4)
+                                            <a href="{{ asset('storage/images/'.$post->image_sub4)}}"  data-lightbox="group">
+                                                <img src="{{ asset('storage/images/'.$post->image_sub4)}}" class="mx-auto fit_grid rounded-lg">
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('logo/noimageBK.jpg')}}" class="mx-auto fit_grid">
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                            @endif
-                        </div>
-                            
-                        {{--サブ画面表示--}}
-                        <div class="item3">
-                            @if($post->image_sub1)
-                                <a href="{{ asset('storage/images/'.$post->image_sub1)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$post->image_sub1)}}" class="mx-auto fit_grid">
-                                </a>
-                            @else
-                                <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
-                                {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
-                            @endif
-                        </div>
-                        <div class="item4">
-                            @if($post->image_sub2)
-                                <a href="{{ asset('storage/images/'.$post->image_sub2)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$post->image_sub2)}}" class="mx-auto fit_grid">
-                                </a>
-                            @else
-                                <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
-                                {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
-                            @endif
-                        </div>
-                        <div class="item5">
-                            @if($post->image_sub3)
-                                <a href="{{ asset('storage/images/'.$post->image_sub3)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$post->image_sub3)}}" class="mx-auto fit_grid">{{-- style="height:300px;"> --}}
-                                </a>
-                            @else
-                                <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
-                                {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
-                            @endif
-                        </div>
-                        <div class="item6">
-                            @if($post->image_sub4)
-                                <a href="{{ asset('storage/images/'.$post->image_sub4)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$post->image_sub4)}}" class="mx-auto fit_grid">{{-- style="height:300px;"> --}}
-                                </a>
-                            @else
-                                <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
-                                {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
-                            @endif
                         </div>
 
-                        {{--犬情報と、作成者、更新日時--}}
-                        <div class="item7">
-                            <span class="font-semibold leading-none mt-4">地域：</span>　{{$post->area->area}}<br>
+                        {{--右側--}}
+                        <div class="show_itemR md:col-span-2 bg-teal-50 rounded-lg">
+                            <div class="container_body m-2 grid grid-cols-3 grid-rows-4 gap-4">
+                                    <div class="col-span-3 row-span-3">
+                                        <div class="item2">
+                                            <p class="mt-4 text-gray-600 py-4">{!! nl2br(e($post->body)) !!}<p> {{--{{$post->body}}</p> --}}
+                                            @if($post->hp_adress)
+                                            <div class="flex justify-end">
+                                                <div class="bg-blue-500 text-white rounded-md w-1/5 text-center drop-shadow-lg hover:bg-sky-700"> {{--text-sm font-semibold flex flex-row-reverse --}}
+                                                    <a href="{{ $post->hp_adress }}" target="_blank" rel="noopener noreferrer">To HP</a>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="item7">
+                                            <span class="font-semibold leading-none mt-4">地域：</span>　{{$post->area->area}}<br>
                                 
-                            <span class="font-semibold leading-none mt-4">犬：</span>　{{$post->getDogsStr()}}
-                            <div class="text-sm font-semibold flex flex-row-reverse mt-4">
-                                <p> {{ $post->user->name }} </p>
-                                <p>{{$post->created_at->format('Y/m/d H:i:s')}}</p>
+                                            <span class="font-semibold leading-none mt-4">犬：</span>　{{$post->getDogsStr()}}
+                                            <div class="text-sm font-semibold flex flex-row-reverse mt-4">
+                                                <p> {{ $post->user->name }} </p>
+                                                <p>{{$post->created_at->format('Y/m/d H:i:s')}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <div class="item8">
+                                            <span class="font-semibold leading-none mt-4">施設区分:</span>　{{$post->getFacilityKubun()}}<br>
+                                            <span class="font-semibold leading-none mt-4">年代別お勧め度：</span>
+                                            <ul class="ml-8">
+                                                <li>　幼　　児　：{{$post->getAgeStr($post->infant)}}</li>
+                                                <li>小学生低学年：{{$post->getAgeStr($post->lower_grade)}}</li>
+                                                <li>小学生高学年：{{$post->getAgeStr($post->higher_grade)}}</li>
+                                                <li>中学生以上　：{{$post->getAgeStr($post->over13)}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        {{--年代別 おすすめ度の表示--}}
-                        <div class="item8">
-                            <span class="font-semibold leading-none mt-4">施設区分:</span>　{{$post->getFacilityKubun()}}<br>
-                            <span class="font-semibold leading-none mt-4">年代別お勧め度：</span>
-                            <ul class="ml-8">
-                                <li>　幼　　児　：{{$post->getAgeStr($post->infant)}}</li>
-                                <li>小学生低学年：{{$post->getAgeStr($post->lower_grade)}}</li>
-                                <li>小学生高学年：{{$post->getAgeStr($post->higher_grade)}}</li>
-                                <li>中学生以上　：{{$post->getAgeStr($post->over13)}}</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -162,7 +177,7 @@
                         <div>
                             @if($comment->image_comme)
                                 <a href="{{ asset('storage/images/'.$comment->image_comme)}}"  data-lightbox="group">
-                                    <img src="{{ asset('storage/images/'.$comment->image_comme)}}" class="w-full">{{--mx-auto--}}
+                                    <img src="{{ asset('storage/images/'.$comment->image_comme)}}" class="w-full rounded-lg">{{--mx-auto--}}
                                 </a>
                             @else
                                 <img src="{{ asset('logo/noimage.jpg')}}" class="w-full">

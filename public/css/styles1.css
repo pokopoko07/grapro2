@@ -12,10 +12,19 @@
 
 }
 
+.item-1 {
+    border-radius: 0.5rem;
+}
+
+.item-1 img {
+    border-radius: 20px;
+}
+
 .fit_grid {
     width: 100%; /* ADD */
     height:100%; /* ADD */
-    object-fit: contain;
+    /* object-fit: contain; */
+    object-fit: cover;
     overflow: hidden;
 }
 

@@ -47,7 +47,7 @@
         <div class="prof_itemR md:col-span-2">
             <div class="container_profile_2 grid grid-cols-3 grid-rows-3 gap-8">
                 <div class="bg-teal-50"></div>
-                <div class="col-span-2 bg-white">
+                <div class="col-span-2 bg-white rounded-2xl">
                     <div class="m-4">
                         <span class="font-semibold">プログラマー、SEを目指した理由--</span>
                         　小学3年生の時、お年玉を貯めて買ったMSXというキーボード型のパソコンで、初めてプログラミング
@@ -58,7 +58,7 @@
                         SE、プログラマーのになろうと決意しました。
                     </div>
                 </div>
-                <div class="col-span-2 bg-white">
+                <div class="col-span-2 bg-white rounded-2xl">
                     <div class="m-4">
                         <span class="font-semibold">経歴--</span>
                         　大学で情報工学を学んだ後、医療機器メーカーでシステムエンジニアとして5年半、ユーザーインターフェース
@@ -72,7 +72,7 @@
                 </div>
                 <div class="bg-teal-50"></div>
                 <div class="bg-teal-50"></div>
-                <div class="col-span-2 bg-white">
+                <div class="col-span-2 bg-white rounded-2xl">
                     <div class="m-4">
                         <span class="font-semibold">スキル--</span>
                         　職業訓練校では、「HTML」、「css」、「PHP」、「JavaScript」、「mySQL」、「Laravel」を学びました。20年

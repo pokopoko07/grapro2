@@ -28,9 +28,13 @@
                             <div class="container_list mb-4">
                                 <div class="item-1 h-48">
                                     @if($post->image_main)
-                                        <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid">{{-- style="height:300px;"> --}}
+                                        <div class="rounded-lg w-10/12 h-48">
+                                            <img src="{{ asset('storage/images/'.$post->image_main)}}" class="mx-auto fit_grid">
+                                        </div>
                                     @else
-                                        <img src="{{ asset('logo/noimage.jpg')}}" class="mx-auto fit_grid">
+                                        <div class="rounded-lg w-10/12 h-48">
+                                            <img src="{{ asset('logo/noimage2.jpg')}}" class="mx-auto fit_grid">
+                                        </div>
                                         {{-- <p class="text-4xl font-bold text-neutral-300">No Image</p> --}}
                                     @endif
                                 </div>
@@ -74,17 +78,11 @@
                 </div>
             </div>
         @endforeach
-        {{-- {{$posts->links()}} --}}
-        {{-- {{$posts->appends(request()->query())->links()}} --}}
 
         @if($moveFrom==1)
             {{$posts->appends(request()->input())->links()}}
         @elseif($moveFrom==2)
-            {{-- {{$posts->appends(request()->input())->links()}} --}}
             {{$posts->links()}}
-            {{-- {{ $posts->appends(request()->query())->links('pagination::bootstrap-4') }} --}}
-            {{-- {{$posts->appends(request()->all())->links()}} --}}
-            {{-- {{$posts->appends(request()->except('_token'))->withQueryString()->links()}} --}}
         @endif
     </div>
 </x-app-layout>
