@@ -43,8 +43,6 @@ class PostController extends Controller
             $age        = explode(",",$request->session()->get('ages'));
         }
 
-        $currentPage=$request->session()->get('currentPage');
-
         $posts = Post::where(function($query) use ($word) {
             // 1.2単語の数だけ、where文を作成します
             for($i=0;$i<count($word);$i++){
@@ -147,12 +145,15 @@ class PostController extends Controller
         
         // result関数から、ページ数を保持したまま（セッションの中に、ページが格納されている）
         // だと、以前のページを表示する。ペジネーションの次へボタンなどを押された時は、ペジネーションの
-        // 指定のページを表示するように分岐させた
-        if($currentPage==-1){
-            $posts = $posts->paginate(5);
-        }else{
+        // 指定のページを表示するように分岐させた 
+        $transition=$request->session()->get('transition');
+
+        if($transition==true){
+            $currentPage=$request->session()->get('currentPage');
             $posts = $posts->paginate(5, ['*'], 'page', $currentPage);
-            $request->session()->put('currentPage',-1);
+            $request->session()->put('transition',false);
+        }else{
+            $posts = $posts->paginate(5);
         }
         
         
@@ -161,6 +162,9 @@ class PostController extends Controller
         $user=auth()->user();
 
         $moveFrom=2;
+
+        $currentPage = $posts->currentPage();
+        $request->session()->put('currentPage',$currentPage);
 
         return view('post.index', compact('posts', 'user','moveFrom'));
     }
@@ -436,8 +440,9 @@ class PostController extends Controller
     }
 
     // 投稿した内容を一覧表示する
-    public function show(Post $post)
+    public function show(Request $request, Post $post)
     {
+        $request->session()->put('transition',true);
         return view('post.show', compact('post'));
     }
 
