@@ -9,27 +9,39 @@
         {{-- 左側 --}}
         <div class="prof_itemL bg-teal-50">
             <img src="{{ asset('logo/profile.jpg')}}" class="m-8 mx-auto w-1/2 rounded-full">
-            <ul class="text-center">
-                <li>名前：Mihoko.T</li>
-                <li></li>
-                <li class="mt-4">
-                    <div class="flex justify-center">
-                        <div class="bg-green-500 text-white rounded-md w-1/2 text-center drop-shadow-lg hover:bg-sky-700">
-                            <a href="https://github.com/pokopoko07/grapro2" target="_blank" rel="noopener noreferrer">GitHub:公開コード</a>
-                        </div>
-                    </div>
-                </li>
-                <li></li>
-                <li class="mt-4">
-                    <div class="flex justify-center">
-                        <div class="bg-blue-500 text-white rounded-md w-1/2 text-center drop-shadow-lg hover:bg-sky-700">
-                            <a href="{{ route('contact.create') }}" class="{{ request()->routeIs('contact.create') ? 'active' : '' }}">
-                                お問い合わせ
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="text-left flex justify-center">
+                <table>
+                    <tr>
+                        <th valign="top">名前：</th><td>pokoMom.T</td>
+                    </tr>
+                    <tr>
+                        <th valign="top">出身：</th><td>香川県</td>
+                    </tr>
+                    <tr>
+                        <th valign="top">趣味：</th><td>絵を描くこと・見ること<br>モノづくり<br>ギター始めました</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="flex justify-center">
+                                <div class="bg-green-500 text-white rounded-md w-1/2 text-center drop-shadow-lg hover:bg-sky-700">
+                                    <a href="https://github.com/pokopoko07/grapro2" target="_blank" rel="noopener noreferrer">GitHub:公開コード</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="flex justify-center">
+                                <div class="bg-blue-500 text-white rounded-md w-1/2 text-center drop-shadow-lg hover:bg-sky-700">
+                                    <a href="{{ route('contact.create') }}" class="{{ request()->routeIs('contact.create') ? 'active' : '' }}">
+                                        お問い合わせ
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         {{-- 右側 --}}
         <div class="prof_itemR md:col-span-2">

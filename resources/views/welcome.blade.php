@@ -1,6 +1,6 @@
 <x-guest-layout>
     <body class="antialiased">
-        <div class="h-screen pb-14 bg-right bg-cover">
+        <div class="h-screen pb-2 bg-right bg-cover">
             <div class="container pt-2 md:pt-18 px-6 mx-auto flex flex-col md:flex-row items-center bg-white-100">
                 
                 {{-- 左側 --}}
@@ -70,8 +70,31 @@
                 </div>
             </div>
             <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-                <div class="w-full text-sm text-center md:text-left fade-in border-2 p-4 text-red-800 leading-8 mb-8">
-                    {{-- <P> ここは色々いれてください。</p> --}}
+                <div class="w-full md:text-left fade-in border-2 p-4  leading-8 mb-8">
+                    <h1 class="text-black-800 text-xl text-center">本サイトの利用方法</h1>
+                    <div class="flex flex-col md:flex-row">
+                        <div class="bg-blue-50 m-2 md:basis-1/4">
+                            １．初めての方は、ユーザ登録をお願いします。<br>
+                            2回目以降の方は、loginしてください。
+                        </div>
+                        <div class="bg-blue-50 m-2 md:basis-1/4">
+                            ２．ログインすると検索画面が表示されます。この画面では、様々な条件で検索が可能です。<br><br>
+                            ①単語による検索をします。複数入力も可能です。例）フワフワドーム　遊具<br>
+                            ③施設区分によって検索します。<br>
+                            ③場所によって検索します。<br>
+                            ④犬連れOKかで検索します。<br>
+                            ⑤お勧めの年代で検索します。☆が３つ以上の施設を検索します。<br>
+                            ⑥検索ボタンを押してください。<br>
+                            (何も指定しないで、検索画面を押すと全件表示されます。)
+                        </div>
+                        <div class="bg-blue-50 m-2 md:basis-1/4">
+                            ３．検索一覧が表示されます。気になる施設があれば、施設名をクリックしてください。より詳細な情報が得られます。
+                        </div>
+                        <div class="bg-blue-50 m-2 md:basis-1/4">
+                            ４．詳細画面が表示されます。<br>
+                            追加したい情報があれば、コメント欄をご利用ください。写真も投稿できます。
+                        </div>
+                    </div>
                 </div>
                 <!--フッタ-->
                 <div class="w-full pt-10 pb-6 text-sm md:text-left fade-in">
