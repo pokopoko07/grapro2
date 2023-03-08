@@ -57,7 +57,7 @@
                     <div class="flex w-full justify-center md:justify-center pb-24 lg:pb-0 fade-in">
                         {{-- ボタン設定 --}}
                         <a href="{{route('login')}}">
-                            <x-primary-button class="mr-4 bg-blue-600 font-bold text-base text-center">
+                            <x-primary-button class="mr-4 bg-green-600 font-bold text-base text-center">
                                 ログインはこちら
                             </x-primary-button>
                         </a>
@@ -71,29 +71,71 @@
             </div>
             <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
                 <div class="w-full md:text-left fade-in border-2 p-4  leading-8 mb-8">
-                    <h1 class="text-black-800 text-xl text-center">本サイトの利用方法</h1>
+                    <h1 class="text-black-800 text-center text-2xl md:text-4xl font-bold text-green-700">＜　本サイトの利用方法　＞</h1>
+                    <div class="flex flex-col">
                     <div class="flex flex-col md:flex-row">
-                        <div class="bg-blue-50 m-2 md:basis-1/4">
-                            １．初めての方は、ユーザ登録をお願いします。<br>
-                            2回目以降の方は、loginしてください。
+                        <div class="bg-blue-50 m-2 md:basis-1/2">
+                            <div class="m-4 font-bold md:text-xl">
+                                １．ユーザ登録もしくはログイン
+                            </div>
+                            <div class="m-4">
+                                <a href="{{ asset('logo/setumei1.jpg')}}"  data-lightbox="group">
+                                    <img src="{{ asset('logo/setumei1.jpg')}}" class="mx-auto fit_grid rounded-lg">
+                                </a>
+                            </div>
+                            <div  class="m-4">
+                                (a) 初めての方は、ユーザ登録をお願いします。<br>
+                                (b) 2回目以降の方は、loginしてください。
+                            </div>
                         </div>
-                        <div class="bg-blue-50 m-2 md:basis-1/4">
-                            ２．ログインすると検索画面が表示されます。この画面では、様々な条件で検索が可能です。<br><br>
-                            ①単語による検索をします。複数入力も可能です。例）フワフワドーム　遊具<br>
-                            ③施設区分によって検索します。<br>
-                            ③場所によって検索します。<br>
-                            ④犬連れOKかで検索します。<br>
-                            ⑤お勧めの年代で検索します。☆が３つ以上の施設を検索します。<br>
-                            ⑥検索ボタンを押してください。<br>
-                            (何も指定しないで、検索画面を押すと全件表示されます。)
+                        <div class="bg-blue-50 m-2 md:basis-1/2">
+                            <div class="m-4 font-bold md:text-xl">
+                                ２．条件を選択して検索
+                            </div>
+                            <div class="m-4">
+                                <a href="{{ asset('logo/setumei2.jpg')}}"  data-lightbox="group">
+                                    <img src="{{ asset('logo/setumei2.jpg')}}" class="mx-auto fit_grid rounded-lg">
+                                </a>
+                            </div>
+                            <div class="m-4">
+                                ①単語による検索をします。複数入力も可能です。例）フワフワドーム　遊具<br>
+                                ③施設区分によって検索します。<br>
+                                ③場所によって検索します。<br>
+                                ④犬連れOKかで検索します。<br>
+                                ⑤お勧めの年代で検索します。☆が３つ以上の施設を検索します。<br>
+                                ⑥検索ボタンを押してください。<br>
+                                (何も指定しないで、検索画面を押すと全件表示されます。)
+                            </div>
                         </div>
-                        <div class="bg-blue-50 m-2 md:basis-1/4">
-                            ３．検索一覧が表示されます。気になる施設があれば、施設名をクリックしてください。より詳細な情報が得られます。
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        <div class="bg-blue-50 m-2 md:basis-1/2">
+                            <div class="m-4 font-bold md:text-xl">
+                                ３．一覧画面の施設名をクリック
+                            </div>
+                            <div class="m-4">
+                                <a href="{{ asset('logo/setumei3.jpg')}}"  data-lightbox="group">
+                                    <img src="{{ asset('logo/setumei3.jpg')}}" class="mx-auto fit_grid rounded-lg">
+                                </a>
+                            </div>
+                            <div  class="m-4">
+                                検索一覧が表示されます。気になる施設があれば、施設名か、「read more」をクリックしてください。より詳細な情報が得られます。
+                            </div>
                         </div>
-                        <div class="bg-blue-50 m-2 md:basis-1/4">
-                            ４．詳細画面が表示されます。<br>
-                            追加したい情報があれば、コメント欄をご利用ください。写真も投稿できます。
+                        <div class="bg-blue-50 m-2 md:basis-1/2">
+                            <div class="m-4 font-bold md:text-xl">
+                                ４．詳細画面が表示されます。コメントもお気軽にどうぞ。
+                            </div>
+                            <div class="m-4">
+                                <a href="{{ asset('logo/setumei4.jpg')}}"  data-lightbox="group">
+                                    <img src="{{ asset('logo/setumei4.jpg')}}" class="mx-auto fit_grid rounded-lg">
+                                </a>
+                            </div>
+                            <div  class="m-4">
+                                追加したい情報があれば、コメント欄をご利用ください。写真も投稿できます。
+                            </div>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <!--フッタ-->
