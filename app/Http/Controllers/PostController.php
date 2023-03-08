@@ -7,10 +7,12 @@ use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use App\SearchClasses\SearchQuery;
 
 class PostController extends Controller
 {
     // 投稿された記事を、新しい順に表示させます
+    // 現在は、使っていない関数です。
     public function index()
     {
         $items=Area::all();
@@ -20,132 +22,50 @@ class PostController extends Controller
         return view('post.serch',$param);
     }
 
+    // 詳細画面から、戻るボタンが押されたときに呼び出される関数です。
+    // ユーザリクエストと、以前のページ番号が、セッションに格納されているので、
+    // それを取り出して、再度検索をかけて表示します。
     public function result_back(Request $request, Post $posts)
     {
+        // 複数の単語が、カンマ区切りで文字列としてセッションに入っているため、配列に戻します
         $word           = explode(",",$request->session()->get('words'));
+
+        // 施設区分のセッションに-1が入っていたら、指定がなしという意味なので、配列を空に
+        // -1以外なら、配列に格納します
         if($request->session()->get('facilitys') == -1){
             $facility   =[];
         }else{
             $facility   = explode(",",$request->session()->get('facilitys'));
         }
 
+        // 場所のセッションに-1が入っていたら、指定がなしという意味なので、配列を空に
+        // -1以外なら、配列に格納します
         if($request->session()->get('areas') == -1){
             $area       = [];
         }else{
             $area       = explode(",",$request->session()->get('areas'));
         }
 
+        // 犬の情報をセッションから取得
         $dogs           = $request->session()->get('dogs');
 
+        // お勧め年代のセッションに-1が入っていたら、指定がなしという意味なので、配列を空に
+        // -1以外なら、配列に格納します
         if($request->session()->get('ages') == -1){
             $age        = [];
         }else{
             $age        = explode(",",$request->session()->get('ages'));
         }
 
-        $posts = Post::where(function($query) use ($word) {
-            // 1.2単語の数だけ、where文を作成します
-            for($i=0;$i<count($word);$i++){
-                $query->where(function($query) use ($word, $i) {
-                    $query->where('title', 'LIKE', "%$word[$i]%")
-                          ->orWhere('body', 'LIKE', "%$word[$i]%");
-                });
-            }
-        })->where(function($query) use ($facility) {
-            // 2.2選ばれた施設区分の数だけ繰り返して、施設区分にtrueが入っている
-            // データを抽出する
-            if(empty($facility)==false){
-                $first=0;
-                for($i=0;$i<count($facility);$i++){
-                    switch ($facility[$i]){
-                        case "park":
-                            if($first==0){
-                                $query->where('park', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('park', '=', true);
-                            }
-                            break;
-                        case "indoor_fac":
-                            if($first==0){
-                                $query->where('indoor_fac', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('indoor_fac', '=', true);
-                            }
-                            break;
-                        case "shopping":
-                            if($first==0){
-                                $query->where('shopping', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('shopping', '=', true);
-                            }
-                            break;
-                        case "shopping":
-                            if($first==0){
-                                $query->where('shopping', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('shopping', '=', true);
-                            }
-                            break;
-                        case "gourmet":
-                            if($first==0){
-                                $query->where('gourmet', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('gourmet', '=', true);
-                            }
-                            break;
-                        case "others":
-                            if($first==0){
-                                $query->where('others', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('others', '=', true);
-                            }
-                        break;
-                    }
-                }
-            }
-        })->where(function($query) use ($area) {
-            // 3.2 選択された地域で検索をします
-            if(empty($area)==false){
-                $first=0;
-                for($i=0;$i<count($area);$i++){
-                    if($first==0){
-                        $query->where('area_id', '=', $area[$i]);
-                        $first=1;
-                    }else{
-                        $query->orWhere('area_id', '=', $area[$i]);
-                    }
-                }
-            }
-        })->where(function($query) use ($dogs) {
-            // 4.犬ＯＫかで検索
-            if($dogs<100){
-                $query->where('dogs', '=', $dogs);
-            }
-        })->where(function($query) use ($age) {
-            // 5.年代で検索
-            // お勧め度が3以上のデータを検索
-            $first=0;
-            if(empty($age)==false){
-                for($i=0;$i<count($age);$i++){
-                    if($first==0){
-                        $query->where($age[$i], '>', 3);
-                        $first=1;
-                    }else{
-                        $query->orWhere($age[$i], '>', 3);
-                    }
-                }
-            }
-        })->orderBy('created_at', 'desc');
+        // 検索を行う
+        $search= new SearchQuery($word, $facility, $area, $dogs, $age);
+        $posts=$search->searchTerms(Post::query());
+        $posts=$posts->orderBy('created_at', 'desc');
         
-        // result関数から、ページ数を保持したまま（セッションの中に、ページが格納されている）
-        // だと、以前のページを表示する。ペジネーションの次へボタンなどを押された時は、ペジネーションの
-        // 指定のページを表示するように分岐させた 
+        // 詳細画面から、一覧表示に戻る際は、$transitionにtrueが入っている。trueならば、
+        // セッションから以前の表示ページの番号を取得し、その番号のページを表示させる。
+        // ペジネーションの次へボタンなどを押された時は、ペジネーションの指定のページを表示
+        // するように分岐させた 
         $transition=$request->session()->get('transition');
 
         if($transition==true){
@@ -161,18 +81,24 @@ class PostController extends Controller
 
         $user=auth()->user();
 
+        // 遷移元が、result_backからであるかを$moveFromに2を渡すことで示している
         $moveFrom=2;
 
+        // 詳細画面が押された時ように、現在のページをセッションに格納しておく。
         $currentPage = $posts->currentPage();
         $request->session()->put('currentPage',$currentPage);
 
         return view('post.index', compact('posts', 'user','moveFrom'));
     }
 
+    // 検索画面から、検索ボタンがおされたとき、呼び出される関数
+    // ユーザ入力された、検索条件から検索し、結果を一覧表示させます。
+    // 詳細画面から、戻るボタンがおされたときに、検索条件を保持するため、
+    // セッションに格納しておきます
     public function result(Request $request)
     {
-        // 1.単語検索
-        // 1.1入力されたデータを成形して、word[]に入力します
+        // 単語検索のために
+        // 入力されたデータを成形して、word[]に入力します
         $word = str_replace('、', ',', $request->word);
         $word = str_replace(' ',  ',', $word);
         $word = str_replace('　',  ',', $word);
@@ -183,8 +109,8 @@ class PostController extends Controller
             $word[$i]=trim($word[$i]);
         }
         
-        // 2.施設区分で検索
-        // 2.1 得られたデータをわかりやすく変数に入れます
+        // 施設区分で検索のために
+        // 得られたデータをわかりやすく変数に入れます
         $facility   = $request->facility_name;
         if (empty($facility)){
             $request->session()->put('facilitys', -1);
@@ -192,8 +118,8 @@ class PostController extends Controller
             $request->session()->put('facilitys',implode(',', $facility));//セッションに施設区分を入れます
         }
 
-        // 3.地域で検索
-        // 3.1　得られたデータをわかりやすく変数に入れます
+        // 地域で検索するために
+        // 得られたデータをわかりやすく変数に入れます
         $area       = $request->area_name;
         if (empty($area)){
             $request->session()->put('areas', -1);
@@ -201,11 +127,11 @@ class PostController extends Controller
             $request->session()->put('areas',implode(',', $area));//セッションに地域を入れます
         }
 
-        // 4.犬ＯＫかで検索
+        // 犬ＯＫかで検索するために、変数に格納します
         $dogs       = $request->dogs;
         $request->session()->put('dogs',$dogs);//セッションに犬OKを入れます
 
-        // 5.年代で検索
+        // 年代で検索するために、データを格納
         $age        = $request->age_name;
 
         if (empty($age)){
@@ -214,116 +140,22 @@ class PostController extends Controller
             $request->session()->put('ages',implode(',', $age));//セッションに地域を入れます
         }
 
-        $posts = Post::where(function($query) use ($word) {
-            // 1.2単語の数だけ、where文を作成します
-            for($i=0;$i<count($word);$i++){
-                $query->where(function($query) use ($word, $i) {
-                    $query->where('title', 'LIKE', "%$word[$i]%")
-                          ->orWhere('body', 'LIKE', "%$word[$i]%");
-                });
-            }
-        })->where(function($query) use ($facility) {
-            // 2.2選ばれた施設区分の数だけ繰り返して、施設区分にtrueが入っている
-            // データを抽出する
-            if(empty($facility)==false){
-                $first=0;
-                for($i=0;$i<count($facility);$i++){
-                    switch ($facility[$i]){
-                        case "park":
-                            if($first==0){
-                                $query->where('park', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('park', '=', true);
-                            }
-                            break;
-                        case "indoor_fac":
-                            if($first==0){
-                                $query->where('indoor_fac', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('indoor_fac', '=', true);
-                            }
-                            break;
-                        case "shopping":
-                            if($first==0){
-                                $query->where('shopping', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('shopping', '=', true);
-                            }
-                            break;
-                        case "shopping":
-                            if($first==0){
-                                $query->where('shopping', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('shopping', '=', true);
-                            }
-                            break;
-                        case "gourmet":
-                            if($first==0){
-                                $query->where('gourmet', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('gourmet', '=', true);
-                            }
-                            break;
-                        case "others":
-                            if($first==0){
-                                $query->where('others', '=', true);
-                                $first=1;
-                            }else{
-                                $query->orWhere('others', '=', true);
-                            }
-                        break;
-                    }
-                }
-            }
-        })->where(function($query) use ($area) {
-            // 3.2 選択された地域で検索をします
-            if(empty($area)==false){
-                $first=0;
-                for($i=0;$i<count($area);$i++){
-                    if($first==0){
-                        $query->where('area_id', '=', $area[$i]);
-                        $first=1;
-                    }else{
-                        $query->orWhere('area_id', '=', $area[$i]);
-                    }
-                }
-            }
-        })->where(function($query) use ($dogs) {
-            // 4.犬ＯＫかで検索
-            if($dogs<100){
-                $query->where('dogs', '=', $dogs);
-            }
-        })->where(function($query) use ($age) {
-            // 5.年代で検索
-            // お勧め度が3以上のデータを検索
-            $first=0;
-            if(empty($age)==false){
-                for($i=0;$i<count($age);$i++){
-                    if($first==0){
-                        $query->where($age[$i], '>', 3);
-                        $first=1;
-                    }else{
-                        $query->orWhere($age[$i], '>', 3);
-                    }
-                }
-            }
-        })->orderBy('created_at', 'desc')->paginate(5)->withPath('/result/back');
+        // 検索を行う
+        $search= new SearchQuery($word, $facility, $area, $dogs, $age);
+        $posts=$search->searchTerms(Post::query());
+        $posts=$posts->orderBy('created_at', 'desc')->paginate(5)->withPath('/result/back');
 
         $user=auth()->user();
 
+        // 遷移元が、resultからであるかを$moveFromに1を渡すことで示している
         $moveFrom=1;
 
-        //$count=count($posts);
-        // 現在のページを取得します
+
+        // 現在のページを取得して、セッションに入れます
         $currentPage = $posts->currentPage();
         $request->session()->put('currentPage',$currentPage);
 
-        return view('post.index', compact('posts', 'user','moveFrom'));//,'count'));
+        return view('post.index', compact('posts', 'user','moveFrom'));
     }
 
     /* create 関数
@@ -442,11 +274,14 @@ class PostController extends Controller
     // 投稿した内容を一覧表示する
     public function show(Request $request, Post $post)
     {
+        // 詳細画面が開かれたことを知らせるため、セッションのtransition
+        // にtrueを格納しておきます
         $request->session()->put('transition',true);
         return view('post.show', compact('post'));
     }
 
     // 詳細画面の編集を行う画面を表示する
+    // 編集操作は、adminしか行えません
     public function edit(Post $post)
     {
         Gate::authorize('admin');
@@ -560,6 +395,7 @@ class PostController extends Controller
     }
 
     // 投稿記事を削除します
+    // この操作は、Adminしか行えません。
     public function destroy(Post $post)
     {
         Gate::authorize('admin');
