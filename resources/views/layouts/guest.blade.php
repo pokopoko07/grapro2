@@ -34,10 +34,10 @@
                         @auth
                             <a href="{{ url('/post') }}" class="text-xl text-gray-700 dark:text-gray-500 underline">HOME</a>
                         @else
-                            <a href="{{ route('login') }}" class="text-xl text-gray-700 dark:text-gray-500 underline font-bold text-base">ログイン</a>
+                            <a href="{{ route('login') }}" class="text-xl text-gray-700 dark:text-gray-500 underline font-bold">ログイン</a>
         
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-xl text-gray-700 dark:text-gray-500 underline font-bold text-base">新規登録</a>
+                                <a href="{{ route('register') }}" class="ml-4 text-xl text-gray-700 dark:text-gray-500 underline font-bold">新規登録</a>
                             @endif
                         @endauth
                         </div>
