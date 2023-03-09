@@ -306,7 +306,7 @@ class PostController extends Controller
             'image_sub2'=>'image|max:1024',
             'image_sub3'=>'image|max:1024',
             'image_sub4'=>'image|max:1024',
-            'hp_adress' =>'url',
+            //'hp_adress' =>'url',
             'infant'    =>'numeric|between:1,5',
             'lower_grade'=>'numeric|between:1,5',
             'higher_grade'=>'numeric|between:1,5',
