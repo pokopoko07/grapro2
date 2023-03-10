@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col justify-center md:flex-row items-center">
-                <div class="w-10/12 md:text-left fade-in border-2 p-4  leading-8 mb-8">
+                <div class="w-full md:w-10/12 md:text-left fade-in border-2 p-4  leading-8 mb-8">
                     <h1 class="text-black-800 text-center text-2xl md:text-4xl font-bold text-green-700">＜　本サイトの利用方法　＞</h1>
                     <div class="flex flex-col">
                     <div class="flex flex-col md:flex-row">
