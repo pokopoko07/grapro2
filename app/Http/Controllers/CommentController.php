@@ -109,10 +109,12 @@ class CommentController extends Controller
     {    
         Gate::authorize('adminAndMyself',$comment);
 
-        $str ="storage/images/".$comment->image_comme;
-        $filePath = public_path($str);
-        if (file_exists($filePath)) {
-            unlink($filePath);
+        if(is_null($comment->image_comme)==false){
+            $str ="storage/images/".$comment->image_comme;
+            $filePath = public_path($str);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
         }
 
         $comment->delete();
