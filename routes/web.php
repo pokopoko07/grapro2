@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('post/comment/destroy/{post}/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+// Route::post('post/show',[PostController::class,'show'])->name('post.show');
+
 Route::post('/result',[PostController::class,'result'])->name('post.result');
 //Route::get('/result',[PostController::class,'result'])->name('post.result');
 Route::post('/result_back',[PostController::class,'result_back'])->name('post.result_back');
@@ -54,5 +57,7 @@ Route::get('contact/create', [ContactController::class, 'create'])->name('contac
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('contact/index', [ContactController::class, 'index'])->name('contact.index');
+
+
 
 

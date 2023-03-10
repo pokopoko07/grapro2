@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 
 class CommentController extends Controller
@@ -103,8 +105,18 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
-    {
-        //
+    public function destroy(Post $post, Comment $comment)
+    {    
+        Gate::authorize('adminAndMyself',$comment);
+
+        $str ="storage/images/".$comment->image_comme;
+        $filePath = public_path($str);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $comment->delete();
+        
+        return redirect()->route('post.show', $post)->with('message', 'コメントを削除しました');
     }
 }
