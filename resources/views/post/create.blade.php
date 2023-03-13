@@ -3,9 +3,9 @@
         <h2 class="font-semibold text-xl text-white leading-tight">
             投稿の新規作成
         </h2>
-
-        <x-validation-errors class="mb-4" :errors="$errors" />
-
+        <div class="bg-red-100 rounded-md">
+            <x-validation-errors class="m-8 mb-4" :errors="$errors" />
+        </div>
         <x-message :message="session('message')" />
     </x-slot>
     

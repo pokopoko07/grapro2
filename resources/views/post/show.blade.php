@@ -10,9 +10,9 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mx-4 sm:p-8">
-            <div class="px-10 mt-4">
+            <div class="px-4 md:px-10 mt-4">
 
-                <div class="bg-white w-full  rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
+                <div class="bg-white w-full  rounded-2xl px-4 md:px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
                     <div class="mt-4">
                         {{-- 施設名表示 --}}
                         <h1 class="text-3xl text-gray-700 font-semibold hover:underline cursor-pointer">
@@ -100,40 +100,34 @@
 
                         {{--右側--}}
                         <div class="show_itemR md:col-span-2 bg-teal-50 rounded-lg">
-                            <div class="container_body m-2 grid grid-cols-3 grid-rows-4 gap-4">
-                                    <div class="col-span-3 row-span-3">
-                                        <div class="item2">
-                                            <p class="mt-4 text-gray-600 py-4">{!! nl2br(e($post->body)) !!}<p> {{--{{$post->body}}</p> --}}
-                                            @if($post->hp_adress)
-                                            <div class="flex justify-end">
-                                                <div class="bg-blue-500 text-white rounded-md w-1/5 text-center drop-shadow-lg hover:bg-sky-700"> {{--text-sm font-semibold flex flex-row-reverse --}}
-                                                    <a href="{{ $post->hp_adress }}" target="_blank" rel="noopener noreferrer">To HP</a>
-                                                </div>
-                                            </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="item7">
-                                            <span class="font-semibold leading-none mt-4">地域：</span>　{{$post->area->area}}<br>
-                                
-                                            <span class="font-semibold leading-none mt-4">犬：</span>　{{$post->getDogsStr()}}
-                                            <div class="text-sm font-semibold flex flex-row-reverse mt-4">
-                                                <p> {{ $post->user->name }} </p>
-                                                <p>{{$post->created_at->format('Y/m/d H:i:s')}}</p>
+                            <div class="flex flex-col m-2">
+                                <div class="item2">
+                                    <p class="mt-4 text-gray-600 py-4">{!! nl2br(htmlspecialchars($post->body)) !!}<p> {{-- {!! nl2br(e($post->body)) !!}<p>--}} {{--{{$post->body}}</p> --}}
+                                    @if($post->hp_adress)
+                                        <div class="flex justify-end">
+                                            <div class="bg-blue-500 text-white rounded-md w-1/5 text-center drop-shadow-lg hover:bg-sky-700"> {{--text-sm font-semibold flex flex-row-reverse --}}
+                                                <a href="{{ $post->hp_adress }}" target="_blank" rel="noopener noreferrer">To HP</a>
                                             </div>
                                         </div>
+                                    @endif
+                                </div>
+                                <div class="flex flex-col md:md:flex-row">
+                                    <div class="item7 md:basis-1/2">
+                                        <span class="font-semibold leading-none mt-4">地域：</span>　{{$post->area->area}}<br>
+                                        <span class="font-semibold leading-none mt-4">施設区分:</span>　{{$post->getFacilityKubun()}}<br>
+                                        <span class="font-semibold leading-none mt-4">犬：</span>　{{$post->getDogsStr()}}
                                     </div>
-                                    <div class="col-span-2">
-                                        <div class="item8">
-                                            <span class="font-semibold leading-none mt-4">施設区分:</span>　{{$post->getFacilityKubun()}}<br>
-                                            <span class="font-semibold leading-none mt-4">年代別お勧め度：</span>
-                                            <ul class="ml-8">
-                                                <li>　幼　　児　：{{$post->getAgeStr($post->infant)}}</li>
-                                                <li>小学生低学年：{{$post->getAgeStr($post->lower_grade)}}</li>
-                                                <li>小学生高学年：{{$post->getAgeStr($post->higher_grade)}}</li>
-                                                <li>中学生以上　：{{$post->getAgeStr($post->over13)}}</li>
-                                            </ul>
+                                    <div class="item8 md:basis-1/2">
+                                        <span class="font-semibold leading-none mt-4">年代別お勧め度：</span>
+                                        <ul class="ml-8">
+                                            <li>　幼　　児　：{{$post->getAgeStr($post->infant)}}</li>
+                                            <li>小学生低学年：{{$post->getAgeStr($post->lower_grade)}}</li>
+                                            <li>小学生高学年：{{$post->getAgeStr($post->higher_grade)}}</li>
+                                            <li>中学生以上　：{{$post->getAgeStr($post->over13)}}</li>
+                                        </ul>
+                                        <div class="text-sm font-semibold flex flex-row-reverse mt-4">
+                                            {{-- <p> {{ $post->user->name }} </p> --}}
+                                            <p>更新日：{{$post->updated_at->format('Y/m/d H:i:s')}}</p>
                                         </div>
                                     </div>
                                 </div>

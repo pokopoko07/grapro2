@@ -4,7 +4,9 @@
             記事の編集画面
         </h2>
 
-        <x-validation-errors class="mb-4" :errors="$errors" />
+        <div class="bg-red-100 rounded-md">
+            <x-validation-errors class="m-8 mb-4" :errors="$errors" />
+        </div>
 
         <x-message :message="session('message')" />
     </x-slot>

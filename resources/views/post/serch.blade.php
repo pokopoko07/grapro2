@@ -32,7 +32,7 @@
                             施設区分：
                         </div>
                         <div class="w-3/4">
-                            <div class="w-full flex flex-row mt-8">
+                            <div class="w-full flex flex-wrap md:flex-row mt-8">
                                 <label class="ml-4"><input type="checkbox" name="facility_name[]" value="park">公園</label>
                                 <label class="ml-4"><input type="checkbox" name="facility_name[]" value="indoor_fac">屋内施設</label>
                                 <label class="ml-4"><input type="checkbox" name="facility_name[]" value="shopping">買物</label>
@@ -74,7 +74,7 @@
                             対象年代:
                         </div>
                         <div class="w-3/4">
-                            <div class="w-full flex flex-row  mt-8">
+                            <div class="w-full flex flex-col md:flex-row  mt-8">
                                 <label class="ml-4"><input type="checkbox" name="age_name[]" value="infant">幼児</label>
                                 <label class="ml-4"><input type="checkbox" name="age_name[]" value="lower_grade">小学生低学年</label>
                                 <label class="ml-4"><input type="checkbox" name="age_name[]" value="higher_grade">小学生高学年</label>
